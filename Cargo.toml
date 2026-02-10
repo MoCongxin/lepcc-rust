@@ -1,0 +1,30 @@
+[package]
+name = "lepcc"
+version = "0.1.0"
+edition = "2021"
+authors = ["Rust translation of Esri's LEPCC"]
+description = "High-performance point cloud compression for I3S format - LEPCC implementation in Rust"
+license = "Apache-2.0"
+repository = "https://github.com/Esri/lepcc"
+readme = "README.md"
+keywords = ["compression", "point-cloud", "lidar", "3d", "i3s", "laser", "geospatial"]
+categories = ["compression", "science", "data-structures", "algorithms"]
+include = [
+    "/src/**/*.rs",
+    "/README.md",
+    "/LICENSE",
+    "/examples"
+]
+
+[lib]
+name = "lepcc"
+path = "src/lib.rs"
+
+[[example]]
+name = "duipai"
+path = "examples/duipai.rs"
+
+[[example]]
+name = "encode_only"
+path = "examples/encode_only.rs"
+
