@@ -244,10 +244,20 @@ impl ClusterRgbEncoder {
         Ok(result)
     }
 
-    fn compute_3d_array_index(&self, r: Byte, g: Byte, b: Byte, level: i32) -> i32 {
-        let shift = 8 - level;
-        (((r >> shift) << (level * 2)) + ((g >> shift) << level) + (b >> shift)) as i32
-    }
+fn compute_3d_array_index(&self, r: Byte, g: Byte, b: Byte, level: i32) -> i32 {
+	// 防止位移溢出：当 level >= 8 时，直接返回组合值
+	// 因为位移超过 7 位会导致 u8 类型溢出
+	if level >= 8 {
+		((r as i32) << 16) | ((g as i32) << 8) | (b as i32)
+	} else {
+		let shift = 8 - level;
+		let r_shifted = (r >> shift) as i32;
+		let g_shifted = (g >> shift) as i32;
+		let b_shifted = (b >> shift) as i32;
+		// 使用乘法代替位移，避免编译时溢出检查
+		(r_shifted * (1 << (level * 2))) + (g_shifted * (1 << level)) + b_shifted
+	}
+}
 
     fn generate_colormap_lossless(&mut self, lossless_colors: &[i32]) -> Result<()> {
         self.color_map = Vec::with_capacity(lossless_colors.len());
