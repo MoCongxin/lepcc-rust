@@ -53,8 +53,10 @@ struct RgbColor {
     r: Byte,
     g: Byte,
     b: Byte,
+    #[allow(dead_code)]
     a: Byte,
 }
+
 
 impl Default for ClusterRgbEncoder {
     fn default() -> Self {
@@ -93,8 +95,8 @@ impl ClusterRgbEncoder {
         // Build histogram
         let mut level_6_histo = vec![0i32; 64 * 64 * 64];
 
-        let num_color_steps = 1 << 6;
-        let color_shift_6 = 8 - 6;
+        let _num_color_steps = 1 << 6;
+        let _color_shift_6 = 8 - 6;
 
         for &rgb in colors {
             // Count original colors
@@ -130,7 +132,7 @@ impl ClusterRgbEncoder {
             self.generate_colormap_lossless(&lossless_colors)?;
             self.turn_colors_to_indexes(colors)?;
 
-            let mut index_bytes = self.compute_num_bytes_needed_color_indexes();
+            let index_bytes = self.compute_num_bytes_needed_color_indexes();
             if index_bytes < 0 {
                 // Store raw
                 self.color_lookup_method = ColorLookupMethod::None;
@@ -170,7 +172,7 @@ impl ClusterRgbEncoder {
             self.color_map = color_map;
             self.turn_colors_to_indexes(colors)?;
 
-            let mut index_bytes = self.compute_num_bytes_needed_color_indexes();
+            let index_bytes = self.compute_num_bytes_needed_color_indexes();
             if index_bytes < 0 {
                 self.color_lookup_method = ColorLookupMethod::None;
                 self.rgb_vec = colors.to_vec();
@@ -414,7 +416,7 @@ impl ClusterRgbDecoder {
 
         let num_points = u32::from_le_bytes([data[16], data[17], data[18], data[19]]) as usize;
         let num_colors = u16::from_le_bytes([data[20], data[21]]) as usize;
-        let color_lookup_method = ColorLookupMethod::try_from(data[22])?;
+        let _color_lookup_method = ColorLookupMethod::try_from(data[22])?;
 
         let mut result = Vec::with_capacity(num_points);
 

@@ -173,7 +173,7 @@ impl BitMask {
                 return -1;
             }
 
-            let k_new = i << 3;
+            let _k_new = i << 3;
             byte = self.bits[i];
         }
 

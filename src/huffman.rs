@@ -24,8 +24,10 @@ use std::collections::BinaryHeap;
 pub struct Huffman {
     max_histo_size: usize,
     code_table: Vec<(u16, u32)>, // (code_length, code)
+    #[allow(dead_code)]
     max_num_bits_lut: usize,
 }
+
 
 #[derive(Debug, Clone)]
 struct HuffmanNode {
@@ -54,10 +56,15 @@ impl HuffmanNode {
         }
     }
 
+    #[allow(dead_code)]
     fn is_leaf(&self) -> bool {
         self.left.is_none() && self.right.is_none()
     }
+
+
+
 }
+
 
 impl PartialEq for HuffmanNode {
     fn eq(&self, other: &Self) -> bool {
@@ -176,14 +183,14 @@ impl Huffman {
     }
 
     /// Decode Huffman-encoded data
-    pub fn decode(&self, encoded: &[Byte], num_elements: usize) -> Result<Vec<Byte>> {
-        let mut result = vec![0u8; num_elements];
+    pub fn decode(&self, _encoded: &[Byte], num_elements: usize) -> Result<Vec<Byte>> {
+        let _result = vec![0u8; num_elements];
 
         // Read code table first
-        let pos = 0;
+        let _pos = 0;
         let (_i0, _i1, _max_len) = self.get_range()?;
 
-        let mut bit_stuffer = BitStuffer2;
+        let _bit_stuffer = BitStuffer2;
         // This is a simplified decode - in full implementation we'd need to read the table
 
         // For now, just return an error indicating this is incomplete
@@ -237,7 +244,7 @@ impl Huffman {
     fn tree_to_lut(
         node: &HuffmanNode,
         num_bits: u16,
-        mut bits: u32,
+        bits: u32,
         code_table: &mut [(u16, u32)],
     ) -> bool {
         if num_bits == 32 {
@@ -277,7 +284,7 @@ impl Huffman {
         sort_vec.sort_by(|a, b| b.cmp(a));
 
         // Create canonical codes
-        let mut code_len = sort_vec[0].1;
+        let code_len = sort_vec[0].1;
         let mut max_code_len = self.code_table[code_len].0 as usize;
         let mut code_canonical = 0u32;
         let mut index = 0;

@@ -48,9 +48,12 @@ pub struct FlagBytesEncoder {
     min_value: Byte,
     compression_method: CompressionMethod,
     huffman: Huffman,
+    #[allow(dead_code)]
     data_vec: Vec<u32>,
+    #[allow(dead_code)]
     byte_vec: Vec<Byte>,
 }
+
 
 impl Default for FlagBytesEncoder {
     fn default() -> Self {
@@ -107,7 +110,7 @@ impl FlagBytesEncoder {
         }
 
         let max_elem = (i1 - i0) as u8;
-        let bit_stuffer = BitStuffer2;
+        let _bit_stuffer = BitStuffer2;
         let n_bytes_bit_stuff = BitStuffer2::compute_num_bytes_needed_simple(flag_bytes.len() as u32, max_elem as u32) as i64;
 
         // Choose the better method
@@ -148,7 +151,7 @@ impl FlagBytesEncoder {
 
         // Encode data
         if self.compression_method == CompressionMethod::BitStuff {
-            let mut data_vec: Vec<u32> = flag_bytes.iter().map(|&b| b as u32 - self.min_value as u32).collect();
+            let data_vec: Vec<u32> = flag_bytes.iter().map(|&b| b as u32 - self.min_value as u32).collect();
 
             let encoded = BitStuffer2::encode_simple(&data_vec)?;
             buffer.write_all(&encoded)?;

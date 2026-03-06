@@ -29,8 +29,10 @@ pub struct IntensityEncoder {
     upscale_factor: i32,
     num_bytes_needed: i64,
     bpp: i32,
+    #[allow(dead_code)]
     data_vec: Vec<u32>,
 }
+
 
 impl Default for IntensityEncoder {
     fn default() -> Self {
@@ -71,7 +73,7 @@ impl IntensityEncoder {
         if self.bpp == 8 || self.bpp == 16 {
             self.num_bytes_needed = header_size + (intensities.len() * (self.bpp as usize / 8)) as i64;
         } else {
-            let bit_stuffer = BitStuffer2;
+            let _bit_stuffer = BitStuffer2;
             self.num_bytes_needed = header_size
                 + BitStuffer2::compute_num_bytes_needed_simple(intensities.len() as u32, max_elem as u32) as i64;
         }
@@ -158,6 +160,7 @@ impl IntensityEncoder {
             return 1;
         }
 
+        #[allow(unused_assignments)]
         let mut k1 = k0;
         let mut min_delta = k0;
 
