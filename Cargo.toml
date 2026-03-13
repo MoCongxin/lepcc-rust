@@ -7,7 +7,7 @@ description = "High-performance point cloud compression for I3S format - LEPCC i
 license = "MIT"
 repository = "https://github.com/MoCongxin/lepcc-rust"
 readme = "README.md"
-keywords = ["compression", "point-cloud", "lidar", "3d", "i3s", "laser", "geospatial"]
+keywords = ["compression", "point-cloud", "i3s", "pointcloud"]
 categories = ["compression", "science", "data-structures", "algorithms"]
 include = [
     "/src/**/*.rs",
