@@ -1,6 +1,6 @@
 # LEPCC for Rust
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
 [![Crates.io](https://img.shields.io/crates/v/lepcc?color=orange)](https://crates.io/crates/lepcc)
 
@@ -156,7 +156,7 @@ let compressed = compress_xyz_array(&xyz_array, 0.01, 0.01, 0.01)?;
 // Decompress to flat array
 let decompressed = decompress_xyz_array(&compressed)?;
 
-// Same for RGB: [r0, g0, b0, r1, g1, b1, ...]
+// Same for RGB:[r0, g0, b0, r1, g1, b1, ...]
 let rgb_array = vec![255, 0, 0, 0, 255, 0];
 let compressed_rgb = compress_rgb_array(&rgb_array)?;
 let decompressed_rgb = decompress_rgb_array(&compressed_rgb)?;
@@ -349,7 +349,6 @@ See the `examples/` directory for more complete examples:
 
 - `encode_bunny.rs` - Encode Stanford Bunny model
 - `decode_only.rs` - Decode compressed files
-- `duipai.rs` - Compare C++ and Rust output
 
 Run examples:
 
@@ -453,27 +452,9 @@ cargo install cargo-criterion
 cargo criterion
 ```
 
-## Contributing
-
-Contributions are welcome! Please ensure:
-
-1. Code passes `cargo test`
-2. Code passes `cargo clippy -- -D warnings`
-3. Documentation is updated for public APIs
-4. Examples are included for new features
-
-### Development Workflow
-
-1. Fork and clone the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes
-4. Run tests: `cargo test && cargo clippy`
-5. Commit and push
-6. Create a pull request
-
 ## License
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+Licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Original LEPCC algorithm and C++ implementation by Esri.
 
@@ -481,7 +462,7 @@ Original LEPCC algorithm and C++ implementation by Esri.
 
 - [Esri LEPCC GitHub](https://github.com/Esri/lepcc) - Original C++ implementation
 - [I3S Specification](https://developers.arcgis.com/i3s/) - Indexed 3D Scene Layer format
-- [LERC Paper](https://www.esri.com/content/dam/esrisites/en-us/about/mediaroom/pdfs/pdfs/lerc.pdf) - Related compression algorithm
+-[LERC Paper](https://www.esri.com/content/dam/esrisites/en-us/about/mediaroom/pdfs/pdfs/lerc.pdf) - Related compression algorithm
 
 ## Changelog
 
