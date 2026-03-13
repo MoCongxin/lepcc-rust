@@ -2,7 +2,7 @@
 name = "lepcc"
 version = "0.1.0"
 edition = "2021"
-authors = ["ztl"]
+authors = ["mocongxin"]
 description = "High-performance point cloud compression for I3S format - LEPCC implementation in Rust"
 license = "MIT"
 repository = "https://github.com/MoCongxin/lepcc-rust"
